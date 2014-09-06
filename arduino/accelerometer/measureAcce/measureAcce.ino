@@ -48,16 +48,16 @@ void loop()
 	accelerometer.getAcceleration(&ax,&ay,&az);
 	accelerometer.getPitchAndRoll(&roll,&pitch);
 	// Serial.println("accleration of X/Y/Z: ");
-	Serial.print(ax*9.81);
-	Serial.print(" \t, ");
-	Serial.print(ay*9.81);
-	Serial.print(" \t, ");
-	Serial.print(az*9.81);
-	Serial.print(" \t, pitch");
+//	Serial.print(ax*9.81);
+//	Serial.print(" \t, ");
+//	Serial.print(ay*9.81);
+//	Serial.print(" \t, ");
+//	Serial.print(az*9.81);
+//	Serial.print(", ");
        	Serial.print(pitch);
-	Serial.print("\t, roll");
+	Serial.print(",");
         Serial.println(roll);
-	//delay(500);
+	delay(10);
 
 
 }

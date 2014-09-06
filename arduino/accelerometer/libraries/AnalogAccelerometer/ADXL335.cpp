@@ -59,7 +59,7 @@ void ADXL335::getAcceleration(float *ax,float *ay,float *az)
 	// Serial.print(" z, ");
 	*ax = (xvoltage - ZERO_X)/SENSITIVITY;
 	*ay = (yvoltage - ZERO_Y)/SENSITIVITY;
-	*az = (zvoltage - ZERO_Z)/SENSITIVITYx+1;	
+	*az = (zvoltage - ZERO_Z)/SENSITIVITYx;	
 }
 
 void ADXL335::getPitchAndRoll(float *roll, float *pitch)

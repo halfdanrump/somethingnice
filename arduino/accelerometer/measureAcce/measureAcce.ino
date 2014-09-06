@@ -1,3 +1,6 @@
+#include <chibi.h>
+#include <chibiUsrCfg.h>
+
 #include <ADXL335.h>
 
 /*****************************************************************************/
@@ -32,32 +35,47 @@ void setup()
 {
 	Serial.begin(9600);
 	accelerometer.begin();
+        
+        chibiInit();
+        //chibiSetShortAddr(0xAAAA);
+        //chibiSetChannel(15);
+
 }
 void loop()
 {
-//	int x,y,z;
-//	accelerometer.getXYZ(&x,&y,&z);
+	int x,y,z;
+	accelerometer.getXYZ(&x,&y,&z);
 //	Serial.print("value of X/Y/Z: ");
-//	Serial.print(x);
-//	Serial.print(" x, ");
-//	Serial.print(y);
-//	Serial.print(" y, ");
-//	Serial.print(z);
-//	Serial.print(" z, ");
+	Serial.print(x);
+	Serial.print(" x, ");
+	Serial.print(y);
+	Serial.print(" y, ");
+	Serial.print(z);
+	Serial.print(" z, ");
 	float ax,ay,az, pitch, roll;
 	accelerometer.getAcceleration(&ax,&ay,&az);
 	accelerometer.getPitchAndRoll(&roll,&pitch);
 	// Serial.println("accleration of X/Y/Z: ");
-//	Serial.print(ax*9.81);
-//	Serial.print(" \t, ");
-//	Serial.print(ay*9.81);
-//	Serial.print(" \t, ");
-//	Serial.print(az*9.81);
-//	Serial.print(", ");
+	Serial.print(ax*9.81);
+	Serial.print(" \t, ");
+	Serial.print(ay*9.81);
+	Serial.print(" \t, ");
+	Serial.print(az*9.81);
+	Serial.print(", ");
        	Serial.print(pitch);
 	Serial.print(",");
         Serial.println(roll);
+        
+//        byte buffer[15];
+//        char data[15];
+//        
+//        dtostrf(pitch,3,2, (char *)data); 
+//          sprintf(data, "%f", pitch);
+//  // Send the data to other Chibis
+// 
+//        buffer = byte(data);
+//        chibiTx(BROADCAST_ADDR, buffer,  sizeof(data));
+        
 	delay(10);
-
 
 }

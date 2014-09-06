@@ -1,3 +1,4 @@
+
 import processing.serial.*;
  
 int sensor0 = 0;
@@ -6,27 +7,26 @@ int sensor1 = 0;
 Serial myPort;
  
 void setup() {
-  size(1024, 1024);
+  size(900,900);
   
   // List all the available serial ports
   println(Serial.list());
   // I know that the first port in the serial list on my mac
   // is always my  Arduino, so I open Serial.list()[0].
   // Open whatever port is the one you're using.
-  myPort = new Serial(this, Serial.list()[5], 9600);
+  myPort = new Serial(this, Serial.list()[5], 57600);
   
-  println(Serial.list());
-  // don't generate a serialEvent() unless you get a newline character:
-  myPort.bufferUntil('\n');
 }
  
 void draw() {
   // do your stuff here!
   fill(255,0,0);
   background(0);
-  ellipse(width/2, height/2, sensor0, sensor0);
-//  serialEvent(myPort);
-  println(sensor0);
+  ellipse(width/2, height/2, sensor0, sensor1);
+  serialEvent(myPort);
+//  print(sensor0);
+//  print(",");
+//  print(sensor1);
 }
  
 void serialEvent(Serial myPort) {
@@ -36,6 +36,7 @@ void serialEvent(Serial myPort) {
   if (inString != null) {
     // trim off any whitespace:
     inString = trim(inString);
+    println(inString);
     // split the string on the commas and convert the
     // resulting substrings into an integer array:
     int[] sensors = int(split(inString, ","));
@@ -48,6 +49,4 @@ void serialEvent(Serial myPort) {
     }
     
   }
-  
-  println(inString);
 }
